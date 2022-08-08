@@ -84,8 +84,8 @@ for i in range(1, plasts_n + 1):
 
     for grid_file in [s_grid_file, p_grid_file, d_grid_file]:
         lines = grid_file.readlines()
-        for i in range(0, len(lines)):
-            lines[i] = lines[i].replace('\n', '')
+        for j in range(0, len(lines)):
+            lines[j] = lines[j].replace('\n', '')
 
         numX = int(lines[0].split(' ')[1])
         numY = int(lines[2].split(' ')[0])
