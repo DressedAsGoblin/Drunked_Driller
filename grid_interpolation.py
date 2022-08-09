@@ -162,6 +162,9 @@ for i in tqdm(range(0, len(s_grid_values))): # iterate through lines
         if zero_count > plasts_n - min_plasts: # if number of zero plasts > required, skip
             continue
 
+        #print(zero_count)
+        #print(plasts_n)
+
         a_optimized_plast_values = []
         plasts_percent_sums = []
         plasts_params_percent = []
@@ -237,7 +240,7 @@ for i in tqdm(range(0, len(s_grid_values))): # iterate through lines
         depth_val = np.mean([x[2] for x in plasts_params_percent])
 
         # sum of all %s in plasts > threshold and > previous sum
-        if (sum_p_plast >= b_percent and sum_percent < sum_p_plast):
+        if (sum_p_plast >= b_percent and sum_percent < sum_p_plast and len(a_optimized_plast_values) >= min_plasts):
             failed_params = []
             if custom_target_percent['saturation'] > saturation_val:
                 failed_params.append('saturation')
@@ -268,7 +271,7 @@ for i in tqdm(range(0, len(s_grid_values))): # iterate through lines
                 sum_percent = sum_p
         elif all_ok: # in case we already found zone with all 3 properties suitable
             continue
-        elif sum_p_plast >= b_percent: # if we didn't do that, but passed the threshold
+        elif sum_p_plast >= b_percent and len(a_optimized_plast_values) >= min_plasts: # if we didn't do that, but passed the threshold
             temp_grids = [s_plast_values, s_plast_values, s_plast_values]
 
             if max([x[0] for x in plasts_params_percent]) >= b_percent:
