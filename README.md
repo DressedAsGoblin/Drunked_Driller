@@ -1,4 +1,4 @@
-# Gtid Interpolation
+# Grid Interpolation
 Для запуска необходим Python версии 3.7+, пакеты:
 - numpy
 - matplotlib
